@@ -4,7 +4,7 @@ from torch.utils.data import Dataset
 
 class SinDataset(Dataset):
     def __init__(self,input_len:int=30,output_len:int=30,infer_type:str='future',startdeg:int=0,enddeg:int=360*3,length:int=1000,augumentation=False):
-        self.indicies = torch.randint(startdeg, enddeg, length)
+        self.indicies = torch.randint(startdeg, enddeg, (length,),dtype=torch.float32)
         self.input_len = input_len
         self.output_len = output_len
         self.infer_type = infer_type
@@ -41,7 +41,8 @@ class SinDataset(Dataset):
     def F(self, X):
         if self.augumentation:
             X = X + torch.randn_like(X) * 0.01
-        return torch.sin(X) * torch.sin(torch.cos(X))
+        Y = torch.sin(X) * torch.sin(torch.cos(X))
+        return Y.float()
 
     def __len__(self):
         return len(self.indicies)
