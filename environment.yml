@@ -1,0 +1,14 @@
+name: torch-latest
+channels:
+  - pytorch
+  - defaults
+dependencies:
+  - cudatoolkit
+  - numpy=1.19.2
+  - pillow=8.0.1
+  - pip
+  - python=3.6.12
+  - pytorch=1.7.0
+  - six=1.15.0
+  - torchvision=0.8.1
+
